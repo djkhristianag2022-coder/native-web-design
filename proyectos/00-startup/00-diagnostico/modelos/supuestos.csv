@@ -1,0 +1,7 @@
+variable,valor,unidad,fuente,estado
+ticket_medio_usd,,USD/proyecto,,PENDIENTE
+proyectos_mes,,proyectos/mes,,PENDIENTE
+costo_variable_usd,,USD/proyecto,,PENDIENTE
+costos_fijos_usd,,USD/mes,,PENDIENTE
+horas_fundador_proyecto,,horas/proyecto,,PENDIENTE
+horas_fundador_mes_max,,horas/mes,,PENDIENTE
