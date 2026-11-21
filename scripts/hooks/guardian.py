@@ -115,7 +115,8 @@ def main():
         sys.exit(0)
     herramienta = datos.get("tool_name", "")
     ti = datos.get("tool_input", {}) or {}
-    agente = datos.get("agent_type") or "chief-of-staff"
+    # En modo plugin los agentes llegan con namespace (equipo-web:auditor-red-team).
+    agente = (datos.get("agent_type") or "chief-of-staff").split(":")[-1]
     raiz = os.environ.get("CLAUDE_PROJECT_DIR") or datos.get("cwd") or os.getcwd()
 
     if herramienta in ESCRITURA:

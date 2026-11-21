@@ -47,6 +47,10 @@ def main():
         ("pentest comando local", "Bash", {"command": "grep -r password proyectos/c1"}, "pentester-autorizado", "pasa"),
         ("pentest webfetch referencia", "WebFetch", {"url": "https://owasp.org/www-project-web-security-testing-guide/"}, "pentester-autorizado", "pasa"),
         ("pentest webfetch tercero", "WebFetch", {"url": "https://shop.tercero.example/"}, "pentester-autorizado", "deny"),
+        ("plugin: auditor fuera", "Write", {"file_path": "proyectos/c1/brief.md", "content": "x"}, "equipo-web:auditor-red-team", "deny"),
+        ("plugin: auditor dentro", "Write", {"file_path": "auditorias/c1/fase-1-dictamen.md", "content": "x"}, "equipo-web:auditor-red-team", "pasa"),
+        ("plugin: pentest tercero", "Bash", {"command": "curl https://evil.example"}, "equipo-web:pentester-autorizado", "deny"),
+        ("plugin: pentest autorizado", "Bash", {"command": "curl https://staging.c1.example"}, "equipo-web:pentester-autorizado", "pasa"),
         ("otro agente curl", "Bash", {"command": "curl https://example.com"}, "seo-geo", "pasa"),
     ]
     fallos = 0

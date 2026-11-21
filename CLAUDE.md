@@ -114,6 +114,7 @@ auditorias/<cliente>/       # solo auditor-red-team (y dictámenes de appsec/pen
 
 - Los agentes se editan en `scripts/agentes_data.py` y se regeneran con `python3 scripts/generar_agentes.py`; nunca a mano en `.claude/agents/`.
 - Validación: `python3 scripts/validar_agentes.py` (frontmatter y 8 secciones) y `python3 scripts/hooks/test_guardian.py`.
+- **Distribución:** después de cambiar agentes, comandos, plantillas, `config/`, este protocolo o el guardián, ejecuta `python3 scripts/construir_distribucion.py`. Regenera el plugin (`plugin/`, `.claude-plugin/marketplace.json`) y la skill de chat (`dist/equipo-web.zip`). Verifica con `--verificar` antes de cada commit y sube `version` en el script cuando cambie el comportamiento. Guía de uso: `USO.md`.
 
 ### 9. Responsabilidades compartidas
 
