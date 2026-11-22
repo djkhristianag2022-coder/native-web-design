@@ -55,8 +55,9 @@ Cuando cambie el repositorio: `/plugin marketplace update equipo-agentes`. En Co
 ### Instalar
 
 1. Descarga `dist/equipo-web.zip` de este repositorio (en GitHub: abre el archivo y pulsa *Download raw file*).
-2. En claude.ai: **Personalizar → Skills → + → Crear skill → Subir una skill** y elige el zip.
-3. Si te lo pide, activa la ejecución de código en **Configuración → Capacidades**: así Claude puede entregar los archivos del proyecto.
+2. En claude.ai, abre **Personalizar → Skills** (`claude.ai/customize/skills`). **No está en Ajustes.**
+3. Pulsa **+ → Crear skill → Subir una skill** y elige el zip, sin descomprimirlo.
+4. Requisito: en **Ajustes → Capacidades** debe estar activado **Crear y editar archivos**. Sin él, las skills no funcionan.
 
 ### Usar
 

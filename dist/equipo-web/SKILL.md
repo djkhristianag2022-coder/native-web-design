@@ -1,6 +1,6 @@
 ---
 name: equipo-web
-description: Equipo de consultoría y desarrollo web de 31 roles (Chief of Staff y 30 especialistas en estrategia, marca, UX, ingeniería, crecimiento, legal y seguridad) que trabaja por fases 0-6 con puertas de aprobación del fundador. Úsala cuando el usuario quiera abrir un proyecto web nuevo, ejecutar una fase, auditar, preparar un reporte de cliente o hacer naming, o cuando mencione el equipo, el Chief of Staff o un agente por su nombre (p. ej., estratega-negocio, appsec).
+description: Equipo web de 31 roles (Chief of Staff y 30 especialistas) que lleva proyectos por fases 0-6 con aprobación del fundador. Úsala para abrir proyectos, ejecutar fases, auditar o hacer naming.
 ---
 
 # Equipo web — modo chat

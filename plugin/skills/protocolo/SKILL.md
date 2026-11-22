@@ -1,6 +1,6 @@
 ---
 name: protocolo
-description: Protocolo del Chief of Staff del equipo de 31 agentes (estrategia, marca, UX, ingeniería, crecimiento, legal y seguridad) para proyectos web de consultoría integral. Cárgalo antes de usar cualquier comando /equipo-web:* y cuando el usuario quiera abrir, avanzar o auditar un proyecto web con el equipo.
+description: Protocolo del Chief of Staff del equipo web de 31 agentes. Cárgalo antes de usar /equipo-web:* o al abrir, avanzar o auditar un proyecto web con el equipo.
 ---
 
 ## Modo plugin (leer primero)

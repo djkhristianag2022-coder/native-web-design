@@ -25,7 +25,7 @@ RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PLUGIN = "equipo-web"          # namespace: /equipo-web:fase, equipo-web:appsec
 MARKETPLACE = "equipo-agentes"
 SKILL_CHAT = "equipo-web"      # el nombre de la carpeta debe coincidir con el de la skill
-VERSION = "1.0.0"
+VERSION = "1.0.1"
 
 
 def leer(rel):
@@ -92,7 +92,7 @@ def protocolo_plugin():
                t, flags=re.S)
     cabecera = f"""---
 name: protocolo
-description: Protocolo del Chief of Staff del equipo de 31 agentes (estrategia, marca, UX, ingeniería, crecimiento, legal y seguridad) para proyectos web de consultoría integral. Cárgalo antes de usar cualquier comando /{PLUGIN}:* y cuando el usuario quiera abrir, avanzar o auditar un proyecto web con el equipo.
+description: Protocolo del Chief of Staff del equipo web de 31 agentes. Cárgalo antes de usar /{PLUGIN}:* o al abrir, avanzar o auditar un proyecto web con el equipo.
 ---
 
 """
@@ -158,7 +158,7 @@ Guía completa (Claude Code, Cowork y chat de claude.ai): `USO.md` en la raíz d
 
 SKILL_CHAT_MD = f"""---
 name: {SKILL_CHAT}
-description: Equipo de consultoría y desarrollo web de 31 roles (Chief of Staff y 30 especialistas en estrategia, marca, UX, ingeniería, crecimiento, legal y seguridad) que trabaja por fases 0-6 con puertas de aprobación del fundador. Úsala cuando el usuario quiera abrir un proyecto web nuevo, ejecutar una fase, auditar, preparar un reporte de cliente o hacer naming, o cuando mencione el equipo, el Chief of Staff o un agente por su nombre (p. ej., estratega-negocio, appsec).
+description: Equipo web de 31 roles (Chief of Staff y 30 especialistas) que lleva proyectos por fases 0-6 con aprobación del fundador. Úsala para abrir proyectos, ejecutar fases, auditar o hacer naming.
 ---
 
 # Equipo web — modo chat
@@ -221,12 +221,32 @@ def empaquetar_zip(destino):
 
 # ───────────────────────────── Principal ─────────────────────────────
 
+LIMITE_NOMBRE, LIMITE_DESCRIPCION = 64, 200  # límites de claude.ai para skills subidas
+
+
+def validar_skills(destino):
+    errores = []
+    for ruta in [os.path.join(destino, "dist", SKILL_CHAT, "SKILL.md"),
+                 os.path.join(destino, "plugin", "skills", "protocolo", "SKILL.md")]:
+        fm = re.match(r"---\n(.*?)\n---", open(ruta, encoding="utf-8").read(), re.S).group(1)
+        campos = dict(l.split(": ", 1) for l in fm.splitlines())
+        if set(campos) - {"name", "description"}:
+            errores.append(f"{ruta}: campos no admitidos por claude.ai {sorted(set(campos) - {'name', 'description'})}")
+        if len(campos.get("name", "")) > LIMITE_NOMBRE:
+            errores.append(f"{ruta}: name > {LIMITE_NOMBRE} caracteres")
+        if len(campos.get("description", "")) > LIMITE_DESCRIPCION:
+            errores.append(f"{ruta}: description tiene {len(campos['description'])} caracteres (máx. {LIMITE_DESCRIPCION})")
+    if errores:
+        raise SystemExit("\n".join(errores))
+
+
 def construir(destino):
     for rel in ["plugin", os.path.join("dist", SKILL_CHAT)]:
         shutil.rmtree(os.path.join(destino, rel), ignore_errors=True)
     construir_plugin(destino)
     construir_skill_chat(destino)
     empaquetar_zip(destino)
+    validar_skills(destino)
 
 
 def comparar(a, b):

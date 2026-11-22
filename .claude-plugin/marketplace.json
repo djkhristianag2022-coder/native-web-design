@@ -5,14 +5,14 @@
   },
   "metadata": {
     "description": "Marketplace privado del equipo de agentes",
-    "version": "1.0.0"
+    "version": "1.0.1"
   },
   "plugins": [
     {
       "name": "equipo-web",
       "source": "./plugin",
       "description": "Equipo de 31 agentes para proyectos web con consultoría integral (en español).",
-      "version": "1.0.0"
+      "version": "1.0.1"
     }
   ]
 }
